@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateProfilesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('c_profiles', function (Blueprint $table) {
+            $table->increments('profile_id');
+
+            $table->string('profile_machine_name', 32);
+            $table->string('profile_name', 64);
+
+            $table->timestamp('profile_created_at')->nullable();
+            $table->timestamp('profile_updated_at')->nullable();
+            $table->softDeletes('profile_deleted_at');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('c_profiles');
+    }
+}
