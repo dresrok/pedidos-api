@@ -26,7 +26,7 @@ class CreateAddressesTable extends Migration
 
             $table->integer('address_type_id')->unsigned();
             $table->integer('location_type_id')->unsigned();
-            $table->integer('person_id')->nullable()->unsigned();
+            $table->bigInteger('person_id')->nullable()->unsigned();
             $table->integer('office_id')->nullable()->unsigned();
             
             $table->timestamp('address_created_at')->nullable();

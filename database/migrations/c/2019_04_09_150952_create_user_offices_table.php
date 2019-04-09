@@ -16,7 +16,7 @@ class CreateUserOfficesTable extends Migration
         Schema::create('c_user_offices', function (Blueprint $table) {
             $table->increments('user_office_id');
 
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->integer('office_id')->unsigned();
 
             $table->timestamp('user_office_created_at')->nullable();
