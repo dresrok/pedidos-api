@@ -23,7 +23,7 @@ class BusinessType extends Model
         'business_type_normalized_name',
         'business_type_name'
     ];
-    
+
     protected $dates = [
         'business_type_created_at',
         'business_type_updated_at',
@@ -32,7 +32,7 @@ class BusinessType extends Model
 
     public function companies() : BelongsToMany
     {
-        return $this->belongsToMany(Company::class, 'b_company_business_types', 'business_type_id', 'company_id');
+        return $this->belongsToMany(Company::class, 'b_business_type_company', 'business_type_id', 'company_id');
     }
 
 }
