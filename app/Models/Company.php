@@ -35,12 +35,16 @@ class Company extends Model
 
     public function offices() : HasMany
     {
-        return $this->hasMany(Ofice::class, 'company_id', 'company_id');
+        return $this->hasMany(Office::class, 'company_id', 'company_id');
     }
 
     public function socialNetworks() : BelongsToMany
     {
-        return $this->belongsToMany(SocialNetwork::class, 'b_company_social_networks', 'company_id', 'social_network_id');
+        return $this->belongsToMany(SocialNetwork::class, 'b_company_social_networks', 'company_id', 'social_network_id')
+                        ->as('network')
+                        ->withPivot([
+                            'company_social_network_username'
+                        ]);
     }
 
     public function businessTypes() : BelongsToMany
