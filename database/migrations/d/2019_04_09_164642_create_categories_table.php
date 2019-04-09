@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('d_categories', function (Blueprint $table) {
             $table->bigIncrements('category_id');
-            
+
             $table->string('category_machine_name', 64);
             $table->string('category_normalized_name', 64);
             $table->string('category_name', 64);
@@ -24,7 +24,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('category_order');
 
             $table->bigInteger('subcategory_id')->nullable()->unsigned();
-            $table->bigInteger('office_id')->unsigned();
+            $table->integer('office_id')->unsigned();
 
             $table->timestamp('category_created_at')->nullable();
             $table->timestamp('category_updated_at')->nullable();
