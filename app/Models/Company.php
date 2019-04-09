@@ -26,7 +26,7 @@ class Company extends Model
         'city',
         'company_is_certified'
     ];
-    
+
     protected $dates = [
         'company_network_created_at',
         'company_network_updated_at',
@@ -49,8 +49,8 @@ class Company extends Model
 
     public function businessTypes() : BelongsToMany
     {
-        return $this->belongsToMany(BusinessType::class, 'b_company_business_types', 'company_id', 'business_type_id');
+        return $this->belongsToMany(BusinessType::class, 'b_business_type_company', 'company_id', 'business_type_id');
     }
 
-    
+
 }

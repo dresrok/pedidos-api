@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileMenusTable extends Migration
+class CreateMenuProfileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProfileMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('c_profile_menus', function (Blueprint $table) {
+        Schema::create('c_menu_profile', function (Blueprint $table) {
             $table->increments('profile_menu_id');
 
             $table->integer('profile_id')->unsigned();
@@ -35,6 +35,6 @@ class CreateProfileMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_profile_menus');
+        Schema::dropIfExists('c_menu_profile');
     }
 }
