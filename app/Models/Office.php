@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany};
 
 class Office extends Model
 {
@@ -49,5 +49,25 @@ class Office extends Model
     public function users() : BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function categories() : HasMany
+    {
+        return $this->hasMany(Category::class, 'office_id', 'office_id');
+    }
+
+    public function concepts() : HasMany
+    {
+        return $this->hasMany(Concept::class, 'office_id', 'office_id');
+    }
+
+    public function orders() : HasMany
+    {
+        return $this->hasMany(Order::class, 'office_id', 'office_id');
+    }
+
+    public function invoices() : HasMany
+    {
+        return $this->hasMany(Invoice::class, 'office_id', 'office_id');
     }
 }
