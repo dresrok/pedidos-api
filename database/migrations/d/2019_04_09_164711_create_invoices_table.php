@@ -26,9 +26,9 @@ class CreateInvoicesTable extends Migration
             $table->integer('payment_method_id')->unsigned();
             $table->integer('office_id')->unsigned();
 
-            $table->timestamp('order_created_at')->nullable();
-            $table->timestamp('order_updated_at')->nullable();
-            $table->softDeletes('order_deleted_at');
+            $table->timestamp('invoice_created_at')->nullable();
+            $table->timestamp('invoice_updated_at')->nullable();
+            $table->softDeletes('invoice_deleted_at');
 
             $table->foreign('order_id')->references('order_id')->on('d_orders');
             $table->foreign('person_id')->references('person_id')->on('c_people');
