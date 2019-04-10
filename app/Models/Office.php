@@ -40,4 +40,14 @@ class Office extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
+
+    public function addresses() : HasMany
+    {
+        return $this->hasMany(Address::class, 'office_id', 'office_id');
+    }
+
+    public function users() : BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
