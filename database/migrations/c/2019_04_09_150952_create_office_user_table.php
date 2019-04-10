@@ -14,14 +14,11 @@ class CreateOfficeUserTable extends Migration
     public function up()
     {
         Schema::create('c_office_user', function (Blueprint $table) {
-            $table->increments('user_office_id');
-
             $table->bigInteger('user_id')->unsigned();
             $table->integer('office_id')->unsigned();
 
-            $table->timestamp('user_office_created_at')->nullable();
-            $table->timestamp('user_office_updated_at')->nullable();
-            $table->softDeletes('user_office_deleted_at');
+            $table->timestamp('office_user_created_at')->nullable();
+            $table->timestamp('office_user_updated_at')->nullable();
 
             $table->foreign('user_id')->references('user_id')->on('c_users');
             $table->foreign('office_id')->references('office_id')->on('b_offices');
