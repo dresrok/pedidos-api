@@ -22,9 +22,13 @@ class CreateConceptsTable extends Migration
             $table->string('concept_formula', 128)->nullable();
             $table->double('concept_amount', 12, 2);
 
+            $table->integer('office_id')->unsigned();
+
             $table->timestamp('concept_created_at')->nullable();
             $table->timestamp('concept_updated_at')->nullable();
             $table->softDeletes('concept_deleted_at');
+
+            $table->foreign('office_id')->references('office_id')->on('b_offices');
         });
     }
 
