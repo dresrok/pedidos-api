@@ -14,15 +14,12 @@ class CreateBusinessTypeCompanyTable extends Migration
     public function up()
     {
         Schema::create('b_business_type_company', function (Blueprint $table) {
-            $table->increments('business_type_company_id');
-
             $table->integer('business_type_id')->unsigned();
             $table->integer('office_id')->unsigned();
 
             $table->timestamp('business_type_company_created_at')->nullable();
             $table->timestamp('business_type_company_updated_at')->nullable();
-            $table->softDeletes('business_type_company_deleted_at');
-
+            
             $table->foreign('business_type_id')->references('business_type_id')->on('b_business_types');
             $table->foreign('office_id')->references('office_id')->on('b_offices');
         });

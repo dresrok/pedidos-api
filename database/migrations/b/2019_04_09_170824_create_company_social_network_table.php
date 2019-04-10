@@ -24,7 +24,6 @@ class CreateCompanySocialNetworkTable extends Migration
 
             $table->timestamp('company_social_network_created_at')->nullable();
             $table->timestamp('company_social_network_updated_at')->nullable();
-            $table->softDeletes('company_social_network_deleted_at');
 
             $table->foreign('social_network_id')->references('social_network_id')->on('b_social_networks');
             $table->foreign('company_id')->references('company_id')->on('b_companies');
