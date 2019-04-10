@@ -45,7 +45,7 @@ return [
 
     'route' => [
         'prefix' => '',
-        // 'middleware' => ['loghttp']
+        'middleware' => [\Barryvdh\Cors\HandleCors::class]
     ],
 
     /*
