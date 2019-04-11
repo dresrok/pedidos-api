@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('product_machine_name', 64);
             $table->string('product_normalized_name', 64);
             $table->string('product_name', 64);
-            $table->string('product_description', 128);
+            $table->string('product_description', 128)->nullable();
             $table->string('product_image_path', 128)->nullable();
             $table->string('product_thumbnail_path', 128)->nullable();
 

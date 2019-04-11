@@ -43,7 +43,7 @@ class OrderDetail extends Model
 
     public function concept() : BelongsTo
     {
-        return $this->belongsTo(Concepto::class, 'concept_id');
+        return $this->belongsTo(Concept::class, 'concept_id');
     }
 
     public function invoiceDetail() : HasOne

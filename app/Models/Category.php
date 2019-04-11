@@ -35,7 +35,7 @@ class Category extends Model
         'category_deleted_at'
     ];
 
-    public function category() : BelongsTo
+    public function parent() : BelongsTo
     {
         return $this->belongsTo(Category::class, 'subcategory_id');
     }
