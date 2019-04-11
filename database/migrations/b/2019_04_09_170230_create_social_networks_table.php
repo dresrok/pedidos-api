@@ -20,7 +20,6 @@ class CreateSocialNetworksTable extends Migration
             $table->string('social_network_url', 64);
             $table->string('social_network_icon', 32);
 
-
             $table->timestamp('social_network_created_at')->nullable();
             $table->timestamp('social_network_updated_at')->nullable();
             $table->softDeletes('social_network_deleted_at');

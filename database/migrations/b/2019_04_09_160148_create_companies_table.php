@@ -23,7 +23,6 @@ class CreateCompaniesTable extends Migration
             $table->string('city', 32);
             $table->boolean('company_is_certified');
 
-
             $table->timestamp('company_created_at')->nullable();
             $table->timestamp('company_updated_at')->nullable();
             $table->softDeletes('company_deleted_at');

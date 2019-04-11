@@ -26,7 +26,6 @@ class CreateOfficesTable extends Migration
 
             $table->bigInteger('company_id')->unsigned();
 
-
             $table->timestamp('office_created_at')->nullable();
             $table->timestamp('office_updated_at')->nullable();
             $table->softDeletes('office_deleted_at');

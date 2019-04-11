@@ -18,7 +18,6 @@ class CreateCompanySocialNetworkTable extends Migration
 
             $table->string('company_social_network_username', 32);
 
-
             $table->integer('social_network_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
 
