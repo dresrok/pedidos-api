@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-Use Carbon\Carbon;
+use Carbon\Carbon;
 
 class LocationTypesTableSeeder extends Seeder
 {
