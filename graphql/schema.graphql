@@ -16,3 +16,17 @@ type Query {
 #import person_identification_type.graphql
 #import user.graphql
 #import person.graphql
+
+# Module D
+#import category.graphql
+#import product.graphql
+#import product_price.graphql
+#import concept.graphql
+#import location_type.graphql
+#import address_type.graphql
+#import address.graphql
+#import order.graphql
+#import order_detail.graphql
+#import payment_method.graphql
+#import invoice.graphql
+#import invoice_detail.graphql
