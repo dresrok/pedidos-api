@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->info('Seeders module b');
+        $this->command->info('Seeders module b');
         $this->call(SocialNetworksTableSeeder::class);
         $this->call(BusinessTypesTableSeeder::class);
 
-        $this->info('Seeders module c');
+        $this->command->info('Seeders module c');
         $this->call(ProfilesTableSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(MenuProfileTableSeeder::class);
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationTypesTableSeeder::class);
         $this->call(AddressTypesTableSeeder::class);
 
-        $this->info('Seeders module d');
+        $this->command->info('Seeders module d');
         $this->call(PaymentMethodsTableSeeder::class);
     }
 }

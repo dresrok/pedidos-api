@@ -25,7 +25,7 @@ class MenuProfileTableSeeder extends Seeder
             ['profile_id' => 1, 'menu_id' => 9, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
         ]);
 
-        DB::table('profile_menus')->insert([
+        DB::table('c_menu_profile')->insert([
             ['profile_id' => 2, 'menu_id' => 1, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
             ['profile_id' => 2, 'menu_id' => 2, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
             ['profile_id' => 2, 'menu_id' => 3, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
@@ -34,7 +34,7 @@ class MenuProfileTableSeeder extends Seeder
             ['profile_id' => 2, 'menu_id' => 6, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()]
         ]);
 
-        DB::table('profile_menus')->insert([
+        DB::table('c_menu_profile')->insert([
             ['profile_id' => 3, 'menu_id' => 7, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
             ['profile_id' => 3, 'menu_id' => 8, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()],
             ['profile_id' => 3, 'menu_id' => 9, 'menu_profile_created_at' => Carbon::now(), 'menu_profile_updated_at' => Carbon::now()]

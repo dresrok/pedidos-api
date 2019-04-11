@@ -19,13 +19,16 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'pedidos',
                 'menu_icon' => 'fas fa-shopping-basket',
                 'menu_order' => 1,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
             [
                 'menu_name' => 'Mi menu',
+                'menu_uri' => null,
                 'menu_icon' => 'fas fa-book-open',
                 'menu_order' => 2,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
@@ -52,6 +55,7 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'conceptos',
                 'menu_icon' => 'fas fa-money-check-alt',
                 'menu_order' => 3,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
@@ -60,6 +64,7 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'mi-restaurante',
                 'menu_icon' => 'fas fa-store-alt',
                 'menu_order' => 4,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
@@ -68,6 +73,7 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'restaurantes',
                 'menu_icon' => 'fas fa-store-alt',
                 'menu_order' => 1,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
@@ -76,6 +82,7 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'mis-pedidos',
                 'menu_icon' => 'fas fa-shopping-basket',
                 'menu_order' => 2,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ],
@@ -84,6 +91,7 @@ class MenusTableSeeder extends Seeder
                 'menu_uri' => 'mi-perfil',
                 'menu_icon' => 'fas fa-user-circle',
                 'menu_order' => 3,
+                'menu_parent_id' => null,
                 'menu_created_at' => Carbon::now(),
                 'menu_updated_at' => Carbon::now()
             ]
