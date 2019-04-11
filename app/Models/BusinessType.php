@@ -32,7 +32,7 @@ class BusinessType extends Model
 
     public function companies() : BelongsToMany
     {
-        return $this->belongsToMany(Company::class, 'b_business_type_company', 'business_type_id', 'company_id');
+        return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'company_id');
     }
 
 }
