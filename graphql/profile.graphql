@@ -4,7 +4,3 @@ type Profile {
     profile_name: String!
     menus: [Menu] @belongsToMany
 }
-
-extend type Query {
-    profiles: [Profile] @all
-}

@@ -7,7 +7,3 @@ type Menu {
     parent: Menu @belongsTo
     sub_menus: [Menu] @hasMany(relation: "subMenus")
 }
-
-extend type Query {
-    menus(nombre: Type @eq): [Menu] @all
-}

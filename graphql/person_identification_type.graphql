@@ -1,0 +1,5 @@
+type PersonIdentificationType {
+    person_identification_type_id: ID!
+    person_identification_type_code: String!
+    person_identification_type_description: String!
+}
