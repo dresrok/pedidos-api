@@ -1,0 +1,15 @@
+type Address {
+    address_id: ID!
+    address_name: String
+    address_location_i: String!
+    address_location_ii: String!
+    address_location_iii: String!
+    address_description: String!
+    address_district: String!
+    address_phone: String!
+    address_type: AddressType! @belongsTo(relation: "addressType")
+    location_type: LocationType! @belongsTo(relation: "locationType")
+    person: People! @belongsTo
+    office: Office! @belongsTo
+    orders: [Order] @hasMany
+}

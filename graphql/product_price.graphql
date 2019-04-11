@@ -1,0 +1,5 @@
+type ProductPrice {
+    product_price_id: ID!
+    product_price_amount: String!
+    product: Product! @belongsTo
+}

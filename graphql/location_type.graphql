@@ -1,0 +1,6 @@
+type LocationType {
+    location_type_id: ID!
+    location_type_name: String!
+    addresses: [Address] @hasMany
+}
+

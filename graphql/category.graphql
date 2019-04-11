@@ -1,0 +1,13 @@
+type Category {
+    category_id: ID!
+    category_machine_name: String!
+    category_normalized_name: String!
+    category_name: String!
+    category_image_path: String
+    category_thumbnail_path: String
+    category_order: Int!
+    parent: Category @belongsTo
+    office: Office! @belongsTo
+    subcategories: [Category] @hasMany
+    products: [Product] @hasMany
+}

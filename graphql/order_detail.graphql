@@ -1,0 +1,8 @@
+type OrderDetail {
+    order_detail_id: ID!
+    order_detail_quantity: Int!
+    order: Order! @belongsTo
+    product: Product! @belongsTo
+    concept: Concept! @belongsTo
+    invoice_detail: InvoiceDetail @hasOne(relation: "invoiceDetail")
+}
