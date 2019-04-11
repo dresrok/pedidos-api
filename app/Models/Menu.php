@@ -22,6 +22,7 @@ class Menu extends Model
         'menu_name',
         'menu_uri',
         'menu_icon',
+        'menu_order',
         'menu_parent_id'
     ];
     

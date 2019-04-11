@@ -19,7 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('person_first_name', 64)->nullable();
             $table->string('person_last_name', 64)->nullable();
             $table->string('person_legal_name', 64)->nullable();
-            $table->string('person_identification', 64)->nullable();
+            $table->string('person_identification', 64);
             $table->string('person_description', 256)->nullable();
 
             $table->integer('person_type_id')->unsigned();
