@@ -1,9 +1,10 @@
 type People {
+    person_id: ID!
     person_first_name: String
     person_last_name: String
     person_legal_name: String
     person_full_name: String!
-    person_identification: String
+    person_identification: String!
     person_description: String
     person_type: PersonType @belongsTo(relation: "personType")
     person_identification_type: PersonIdentificationType @belongsTo(relation: "personIdentificationType")
