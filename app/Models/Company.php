@@ -11,9 +11,9 @@ class Company extends Model
 {
     use SoftDeletes;
 
-    const CREATED_AT = 'company_network_created_at';
-    const UPDATED_AT = 'company_network_updated_at';
-    const DELETED_AT = 'company_network_deleted_at';
+    const CREATED_AT = 'company_created_at';
+    const UPDATED_AT = 'company_updated_at';
+    const DELETED_AT = 'company_deleted_at';
 
     protected $table = 'b_companies';
     protected $primaryKey = 'company_id';
@@ -28,9 +28,9 @@ class Company extends Model
     ];
 
     protected $dates = [
-        'company_network_created_at',
-        'company_network_updated_at',
-        'company_network_deleted_at'
+        'company_created_at',
+        'company_updated_at',
+        'company_deleted_at'
     ];
 
     public function offices() : HasMany
@@ -40,17 +40,11 @@ class Company extends Model
 
     public function socialNetworks() : BelongsToMany
     {
-        return $this->belongsToMany(SocialNetwork::class, 'b_company_social_networks', 'company_id', 'social_network_id')
+        return $this->belongsToMany(SocialNetwork::class, 'b_company_social_network', 'company_id', 'social_network_id')
                         ->as('network')
                         ->withPivot([
                             'company_social_network_username'
                         ]);
     }
-
-    public function businessTypes() : BelongsToMany
-    {
-        return $this->belongsToMany(BusinessType::class, 'b_business_type_office', 'company_id', 'business_type_id');
-    }
-
 
 }

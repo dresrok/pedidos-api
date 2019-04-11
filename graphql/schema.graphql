@@ -7,7 +7,16 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
     me: User @auth
+    company(company_id: ID @eq): Company @find(model: "App\\Models\\Company")
+    companies: [Company!]! @all
+    social_networks: [SocialNetwork!]! @all
+    business_types: [BusinessType!]! @all
 }
+# Module B
+#import company.graphql
+#import office.graphql
+#import business_type.graphql
+#import social_network.graphql
 
 # Module C
 #import menu.graphql

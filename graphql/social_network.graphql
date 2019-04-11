@@ -1,0 +1,7 @@
+type SocialNetwork {
+    social_network_id: ID!
+    social_network_name: String!
+    social_network_url: String!
+    social_network_icon: String!
+    companies: [Company!]!  @belongsToMany
+}

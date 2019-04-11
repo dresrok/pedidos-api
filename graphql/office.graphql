@@ -1,0 +1,12 @@
+type Office {
+    office_id: ID!
+    office_name: String!
+    office_email: String
+    office_open_from: String
+    office_open_to: String
+    office_delivery_time: String
+    office_minimum_order_price: String
+    city: String!
+    company: Company! @belongsTo
+    business_types: [BusinessType!]! @belongsToMany( relation: "businessTypes")
+}

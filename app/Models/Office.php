@@ -28,7 +28,7 @@ class Office extends Model
         'city',
         'company_id'
     ];
-    
+
     protected $dates = [
         'office_created_at',
         'office_updated_at',
@@ -39,6 +39,11 @@ class Office extends Model
     public function company() : BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function businessTypes() : BelongsToMany
+    {
+        return $this->belongsToMany(BusinessType::class, 'b_business_type_office', 'office_id', 'business_type_id');
     }
 
     public function addresses() : HasMany
