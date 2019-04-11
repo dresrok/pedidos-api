@@ -1,0 +1,10 @@
+type Profile {
+    profile_id: ID!
+    profile_machine_name: String!
+    profile_name: String!
+    menus: [Menu] @belongsToMany
+}
+
+extend type Query {
+    profiles: [Profile] @all
+}
