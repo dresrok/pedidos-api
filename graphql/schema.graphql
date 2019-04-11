@@ -6,17 +6,13 @@ scalar DateTime
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
-    users: [User!]! @paginate(type: "paginator", model: "App\\Models\\User")
-    user(id: ID @eq): User @find(model: "App\\Models\\User")
+    me: User @auth
 }
 
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-}
-
-#import profile.graphql
+# Module C
 #import menu.graphql
+#import profile.graphql
+#import person_type.graphql
+#import person_identification_type.graphql
+#import user.graphql
+#import person.graphql
