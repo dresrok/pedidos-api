@@ -23,5 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonIdentificationTypesTableSeeder::class);
         $this->call(LocationTypesTableSeeder::class);
         $this->call(AddressTypesTableSeeder::class);
+
+        $this->info('Seeders module d');
+        $this->call(PaymentMethodsTableSeeder::class);
     }
 }
