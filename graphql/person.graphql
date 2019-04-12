@@ -1,4 +1,4 @@
-type People {
+type Person {
     person_id: ID!
     person_first_name: String
     person_last_name: String
@@ -7,7 +7,8 @@ type People {
     person_identification: String!
     person_description: String
     person_type: PersonType @belongsTo(relation: "personType")
-    person_identification_type: PersonIdentificationType @belongsTo(relation: "personIdentificationType")
+    person_identification_type: PersonIdentificationType
+        @belongsTo(relation: "personIdentificationType")
     user: User @hasOne
     addresses: Address @hasMany
     orders: Order @hasMany

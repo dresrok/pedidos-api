@@ -5,7 +5,7 @@ type Invoice {
     invoice_number: String!
     invoice_description: String
     order: Order! @belongsTo
-    person: People! @belongsTo
+    person: Person! @belongsTo
     payment_method: PaymentMethod! @belongsTo(relation: "paymentMethod")
     office: Office! @belongsTo
     invoice_details: [InvoiceDetail!]! @hasMany(relation: "invoiceDetails")

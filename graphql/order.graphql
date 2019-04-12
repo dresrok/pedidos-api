@@ -3,7 +3,7 @@ type Order {
     order_date: DateTime!
     order_serial: Int!
     order_number: String!
-    person: People! @belongsTo
+    person: Person! @belongsTo
     address: Address! @belongsTo
     office: Office! @belongsTo
     order_details: [OrderDetail!]! @hasMany(relation: "orderDetails")

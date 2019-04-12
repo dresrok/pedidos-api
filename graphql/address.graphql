@@ -9,7 +9,7 @@ type Address {
     address_phone: String!
     address_type: AddressType! @belongsTo(relation: "addressType")
     location_type: LocationType! @belongsTo(relation: "locationType")
-    person: People! @belongsTo
+    person: Person! @belongsTo
     office: Office! @belongsTo
     orders: [Order] @hasMany
 }
