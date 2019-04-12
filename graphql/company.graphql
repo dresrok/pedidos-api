@@ -7,6 +7,5 @@ type Company {
     city: String!
     company_is_certified: Boolean!
     offices: [Office!]! @hasMany
-    social_networks: [SocialNetwork!]! @belongsToMany( relation: "socialNetworks")
-
+    social_networks: [SocialNetwork!]! @belongsToMany(relation: "socialNetworks")
 }

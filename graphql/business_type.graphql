@@ -3,5 +3,5 @@ type BusinessType {
     business_type_machine_name: String!
     business_type_normalized_name: String!
     business_type_name: String!
-    companies: [Company!]!  @belongsToMany
+    companies: [Company!]! @belongsToMany
 }

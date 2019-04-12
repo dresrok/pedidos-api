@@ -8,5 +8,5 @@ type Office {
     office_minimum_order_price: String
     city: String!
     company: Company! @belongsTo
-    business_types: [BusinessType!]! @belongsToMany( relation: "businessTypes")
+    business_types: [BusinessType!]! @belongsToMany(relation: "businessTypes")
 }
