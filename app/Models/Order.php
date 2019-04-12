@@ -36,7 +36,7 @@ class Order extends Model
 
     public function person() : BelongsTo
     {
-        return $this->belongsTo(People::class, 'person_id');
+        return $this->belongsTo(Person::class, 'person_id');
     }
 
     public function address() : BelongsTo

@@ -31,6 +31,6 @@ class PersonType extends Model
 
     public function people() : HasMany
     {
-        return $this->hasMany(People::class, 'person_type_id', 'person_type_id');
+        return $this->hasMany(Person::class, 'person_type_id', 'person_type_id');
     }
 }

@@ -31,6 +31,6 @@ class PersonIdentificationType extends Model
 
     public function people() : HasMany
     {
-        return $this->hasMany(People::class, 'person_identification_type_id', 'person_identification_type_id');
+        return $this->hasMany(Person::class, 'person_identification_type_id', 'person_identification_type_id');
     }
 }
