@@ -1,0 +1,12 @@
+type Invoice {
+    invoice_id: ID!
+    invoice_date: DateTime!
+    invoice_serial: Int!
+    invoice_number: String!
+    invoice_description: String
+    order: Order! @belongsTo
+    person: Person! @belongsTo
+    payment_method: PaymentMethod! @belongsTo(relation: "paymentMethod")
+    office: Office! @belongsTo
+    invoice_details: [InvoiceDetail!]! @hasMany(relation: "invoiceDetails")
+}

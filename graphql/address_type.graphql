@@ -1,0 +1,5 @@
+type AddressType {
+    address_type_id: ID!
+    address_type_name: String!
+    addresses: [Address] @hasMany
+}

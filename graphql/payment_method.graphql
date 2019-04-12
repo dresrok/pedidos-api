@@ -1,0 +1,6 @@
+type PaymentMethod {
+    payment_method_id: ID!
+    payment_method_name: String!
+    payment_method_description: String!
+    invoices: [Invoice] @hasMany
+}

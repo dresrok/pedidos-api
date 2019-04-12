@@ -1,0 +1,7 @@
+type User {
+    user_id: ID!
+    email: String!
+    person: Person!
+    profile: Profile!
+    offices: [Office!]! @belongsToMany
+}

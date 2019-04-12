@@ -1,0 +1,41 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    me: User @auth
+    company(company_id: ID @eq): Company @find(model: "App\\Models\\Company")
+    companies: [Company!]! @all
+    social_networks: [SocialNetwork!]! @all
+    business_types: [BusinessType!]! @all
+}
+# Module B
+#import company.graphql
+#import office.graphql
+#import business_type.graphql
+#import social_network.graphql
+
+# Module C
+#import menu.graphql
+#import profile.graphql
+#import person_type.graphql
+#import person_identification_type.graphql
+#import user.graphql
+#import person.graphql
+
+# Module D
+#import category.graphql
+#import product.graphql
+#import product_price.graphql
+#import concept.graphql
+#import location_type.graphql
+#import address_type.graphql
+#import address.graphql
+#import order.graphql
+#import order_detail.graphql
+#import payment_method.graphql
+#import invoice.graphql
+#import invoice_detail.graphql

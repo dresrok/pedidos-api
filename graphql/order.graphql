@@ -1,0 +1,11 @@
+type Order {
+    order_id: ID!
+    order_date: DateTime!
+    order_serial: Int!
+    order_number: String!
+    person: Person! @belongsTo
+    address: Address! @belongsTo
+    office: Office! @belongsTo
+    order_details: [OrderDetail!]! @hasMany(relation: "orderDetails")
+    invoice: Invoice @hasOne
+}

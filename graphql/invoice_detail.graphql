@@ -1,0 +1,7 @@
+type InvoiceDetail {
+    invoice_detail_id: ID!
+    invoice_detail_description: String!
+    invoice_detail_amount: Float!
+    invoice: Invoice! @belongsTo
+    order_detail: OrderDetail! @belongsTo(relation: "orderDetail")
+}

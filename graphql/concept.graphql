@@ -1,0 +1,10 @@
+type Concept {
+    concept_id: ID!
+    concept_factor: Int!
+    concept_name: String!
+    concept_description: String
+    concept_formula: String
+    concept_amount: Float!
+    office: Office! @belongsTo
+    order_details: [OrderDetail] @hasMany(relation: "orderDetails")
+}

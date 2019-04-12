@@ -1,0 +1,9 @@
+type Menu {
+    menu_id: ID!
+    menu_name: String!
+    menu_uri: String
+    menu_icon: String!
+    menu_order: Int!
+    parent: Menu @belongsTo
+    sub_menus: [Menu] @hasMany(relation: "subMenus")
+}

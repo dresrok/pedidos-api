@@ -1,0 +1,11 @@
+type Company {
+    company_id: ID!
+    company_legal_name: String
+    company_commercial_name: String
+    company_slug: String!
+    company_image: String
+    city: String!
+    company_is_certified: Boolean!
+    offices: [Office!]! @hasMany
+    social_networks: [SocialNetwork!]! @belongsToMany(relation: "socialNetworks")
+}
