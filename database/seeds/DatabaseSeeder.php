@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AddressTypesTableSeeder::class);
 
         $this->command->info('Seeders module d');
+        $this->call(EstatesTableSeeder::class);
         $this->call(PaymentMethodsTableSeeder::class);
+
+        $this->command->info('Sample data');
+        $this->call(SampleDataSeeder::class);
     }
 }
