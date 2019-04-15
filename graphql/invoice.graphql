@@ -8,5 +8,6 @@ type Invoice {
     person: Person! @belongsTo
     payment_method: PaymentMethod! @belongsTo(relation: "paymentMethod")
     office: Office! @belongsTo
+    estates: Estate! @belongsToMany
     invoice_details: [InvoiceDetail!]! @hasMany(relation: "invoiceDetails")
 }

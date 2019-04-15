@@ -6,6 +6,7 @@ type Order {
     person: Person! @belongsTo
     address: Address! @belongsTo
     office: Office! @belongsTo
+    estates: Estate! @belongsToMany
     order_details: [OrderDetail!]! @hasMany(relation: "orderDetails")
     invoice: Invoice @hasOne
 }

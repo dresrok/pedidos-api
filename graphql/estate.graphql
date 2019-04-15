@@ -1,0 +1,5 @@
+type Estate {
+    estate_id: ID!
+    estate_name: String!
+    estate_used_by: String!
+}
