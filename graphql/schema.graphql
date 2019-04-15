@@ -34,6 +34,7 @@ type Query {
 #import location_type.graphql
 #import address_type.graphql
 #import address.graphql
+#import estate.graphql
 #import order.graphql
 #import order_detail.graphql
 #import payment_method.graphql
