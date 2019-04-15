@@ -1,0 +1,26 @@
+
+type AuthPayload {
+    access_token: String!
+    refresh_token: String!
+    expires_in: Int!
+    token_type: String!
+}
+
+input LoginInput {
+    username: String!
+    password: String!
+    client_name: String!
+}
+
+
+
+input RefreshTokenInput {
+    refresh_token: String
+    client_name: String!
+}
+
+extend type Mutation {
+    login(input: LoginInput): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@login")
+    refreshToken(input: RefreshTokenInput): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@refreshToken")
+    
+}

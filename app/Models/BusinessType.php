@@ -30,9 +30,9 @@ class BusinessType extends Model
         'business_type_deleted_at'
     ];
 
-    public function companies() : BelongsToMany
+    public function offices() : BelongsToMany
     {
-        return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'company_id');
+        return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'office_id');
     }
 
 }

@@ -12,6 +12,19 @@ type Query {
     social_networks: [SocialNetwork!]! @all
     business_types: [BusinessType!]! @all
 }
+
+type LogoutResponse {
+    status: String!
+    message: String
+}
+
+type Mutation {
+    logout: LogoutResponse! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@logout")
+}
+
+#Auth
+#import auth.graphql
+
 # Module B
 #import company.graphql
 #import office.graphql
