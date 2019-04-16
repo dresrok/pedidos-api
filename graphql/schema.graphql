@@ -6,7 +6,7 @@ scalar DateTime
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
-    me: User @auth
+    me: User @auth(guard: "api")
     company(company_id: ID @eq): Company @find(model: "App\\Models\\Company")
     companies: [Company!]! @all
     social_networks: [SocialNetwork!]! @all

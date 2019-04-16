@@ -8,6 +8,8 @@ use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Nuwave\Lighthouse\Exceptions\AuthenticationException;
 
+use App\Models\User;
+
 class Authentication extends BaseAuthResolver
 {
     /**
@@ -22,7 +24,10 @@ class Authentication extends BaseAuthResolver
     public function login($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $credentials = $this->buildCredentials($args, 'password');
-        return $this->makeRequest($credentials);
+        $token = $this->makeRequest($credentials);
+        $me = User::where('email', $credentials['username'])->first();
+        $company = $me->offices->first()->company;
+        return compact('token', 'me', 'company');
     }
 
     /**
@@ -65,5 +70,4 @@ class Authentication extends BaseAuthResolver
             'message' => 'Your session has been terminated'
         ];
     }
-
 }

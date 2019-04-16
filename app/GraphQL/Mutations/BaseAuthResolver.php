@@ -24,12 +24,10 @@ class BaseAuthResolver
         return $credentials;
     }
 
-
     private function getPassportClient($clientName)
     {
         return Client::whereName($clientName)->first();
     }
-
 
     public function makeRequest(array $credentials)
     {
