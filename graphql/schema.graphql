@@ -13,16 +13,7 @@ type Query {
     business_types: [BusinessType!]! @all
 }
 
-type LogoutResponse {
-    status: String!
-    message: String
-}
-
-type Mutation {
-    logout: LogoutResponse! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@logout")
-}
-
-#Auth
+# Auth
 #import auth.graphql
 
 # Module B

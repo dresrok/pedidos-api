@@ -12,15 +12,18 @@ input LoginInput {
     client_name: String!
 }
 
-
+type LogoutResponse {
+    status: String!
+    message: String
+}
 
 input RefreshTokenInput {
     refresh_token: String
     client_name: String!
 }
 
-extend type Mutation {
+type Mutation {
     login(input: LoginInput): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@login")
     refreshToken(input: RefreshTokenInput): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@refreshToken")
-    
+    logout: LogoutResponse! @field(resolver: "App\\GraphQL\\Mutations\\Authentication@logout")
 }
