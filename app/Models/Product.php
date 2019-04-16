@@ -27,13 +27,35 @@ class Product extends Model
         'product_thumbnail_path',
         'category_id'
     ];
-    
+
     protected $dates = [
         'product_created_at',
         'product_updated_at',
         'product_deleted_at'
     ];
 
+    /**
+     * Set the Product's machine name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setProductMachineNameAttribute($value)
+    {
+        $this->attributes['product_machine_name'] = Str::slug($value, '_');
+    }
+
+    /**
+     * Set the Product's normalized name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setProductNormalizedNameAttribute($value)
+    {
+        $this->attributes['product_normalized_name'] = Str::slug($value, ' ');
+    }
+    
     public function category() : BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');

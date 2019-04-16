@@ -30,6 +30,29 @@ class BusinessType extends Model
         'business_type_deleted_at'
     ];
 
+    /**
+     * Set the Business Type's machine name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setBusinessTypeMachineNameAttribute($value)
+    {
+        $this->attributes['business_type_machine_name'] = Str::slug($value, '_');
+    }
+
+    /**
+     * Set the Business Type's normalized name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setBusinessTypeNormalizedNameAttribute($value)
+    {
+        $this->attributes['business_type_normalized_name'] = Str::slug($value, ' ');
+    }
+
+
     public function offices() : BelongsToMany
     {
         return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'office_id');

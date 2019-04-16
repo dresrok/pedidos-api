@@ -28,12 +28,34 @@ class Category extends Model
         'subcategory_id',
         'office_id'
     ];
-    
+
     protected $dates = [
         'category_created_at',
         'category_updated_at',
         'category_deleted_at'
     ];
+
+    /**
+     * Set the Category's machine name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setCategoryMachineNameAttribute($value)
+    {
+        $this->attributes['category_machine_name'] = Str::slug($value, '_');
+    }
+
+    /**
+     * Set the Category's normalized name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setCategoryNormalizedNameAttribute($value)
+    {
+        $this->attributes['category_normalized_name'] = Str::slug($value, ' ');
+    }
 
     public function parent() : BelongsTo
     {
