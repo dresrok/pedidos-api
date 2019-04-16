@@ -21,7 +21,6 @@ class BaseAuthResolver
         $credentials['client_id'] = $client->id;
         $credentials['client_secret'] = $client->secret;
         $credentials['scope'] = $scope;
-
         return $credentials;
     }
 

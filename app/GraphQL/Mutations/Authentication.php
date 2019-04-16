@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Nuwave\Lighthouse\Exceptions\AuthenticationException;
 
-clasdiAuthentication extends BaseAuthResolver
+class Authentication extends BaseAuthResolver
 {
     /**
      * Return a value for the field.
@@ -55,15 +55,11 @@ clasdiAuthentication extends BaseAuthResolver
         if (!Auth::guard('api')->check()) {
             throw new AuthenticationException("Not Authenticated");
         }
-        // revoke user's token
         $token = Auth::guard('api')->user()->token();
-
         DB::table('oauth_refresh_tokens')
             ->where('access_token_id', $token->id)
             ->update(['revoked' => true]);
-
         $token->revoke();
-
         return [
             'status' => 'TOKEN_REVOKED',
             'message' => 'Your session has been terminated'
