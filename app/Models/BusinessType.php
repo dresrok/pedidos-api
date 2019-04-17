@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsToMany};
 
 class BusinessType extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     const CREATED_AT = 'business_type_created_at';
     const UPDATED_AT = 'business_type_updated_at';
@@ -30,26 +31,23 @@ class BusinessType extends Model
         'business_type_deleted_at'
     ];
 
-    /**
-     * Set the Business Type's machine name.
+     /**
+     * Return the sluggable configuration array for this model.
      *
-     * @param  string  $value
-     * @return void
+     * @return array
      */
-    public function setBusinessTypeMachineNameAttribute($value)
+    public function sluggable()
     {
-        $this->attributes['business_type_machine_name'] = Str::slug($value, '_');
-    }
-
-    /**
-     * Set the Business Type's normalized name.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setBusinessTypeNormalizedNameAttribute($value)
-    {
-        $this->attributes['business_type_normalized_name'] = Str::slug($value, ' ');
+        return [
+            'business_type_machine_name' => [
+                'source' => 'business_type_name',
+                'separator'=> '_'
+            ],
+            'business_type_normalized_name' => [
+                'source' => 'business_type_name',
+                'separator'=> ' '
+            ]
+        ];
     }
 
 

@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Category extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     const CREATED_AT = 'category_created_at';
     const UPDATED_AT = 'category_updated_at';
@@ -35,26 +36,23 @@ class Category extends Model
         'category_deleted_at'
     ];
 
-    /**
-     * Set the Category's machine name.
+     /**
+     * Return the sluggable configuration array for this model.
      *
-     * @param  string  $value
-     * @return void
+     * @return array
      */
-    public function setCategoryMachineNameAttribute($value)
+    public function sluggable()
     {
-        $this->attributes['category_machine_name'] = Str::slug($value, '_');
-    }
-
-    /**
-     * Set the Category's normalized name.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setCategoryNormalizedNameAttribute($value)
-    {
-        $this->attributes['category_normalized_name'] = Str::slug($value, ' ');
+        return [
+            'category_machine_name' => [
+                'source' => 'category_name',
+                'separator'=> '_'
+            ],
+            'category_normalized_name' => [
+                'source' => 'category_name',
+                'separator'=> ' '
+            ]
+        ];
     }
 
     public function parent() : BelongsTo

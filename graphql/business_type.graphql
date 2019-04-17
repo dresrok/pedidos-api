@@ -5,3 +5,14 @@ type BusinessType {
     business_type_name: String!
     companies: [Company!]! @belongsToMany
 }
+
+extend type Query{
+    business_types: [BusinessType!]! @all
+}
+
+extend type Mutation {
+    createBusinessType(
+        business_type_name: String!
+        companies: [ID!]!
+    ): BusinessType @create
+}

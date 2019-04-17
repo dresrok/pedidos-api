@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsToMany, HasMany};
 
 class Company extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     const CREATED_AT = 'company_created_at';
     const UPDATED_AT = 'company_updated_at';
@@ -32,6 +33,21 @@ class Company extends Model
         'company_updated_at',
         'company_deleted_at'
     ];
+
+     /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'company_slug' => [
+                'source' => 'company_legal_name',
+                'separator'=> '_'
+            ]
+        ];
+    }
 
     public function offices() : HasMany
     {

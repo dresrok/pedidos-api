@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     const CREATED_AT = 'product_created_at';
     const UPDATED_AT = 'product_updated_at';
@@ -34,28 +35,25 @@ class Product extends Model
         'product_deleted_at'
     ];
 
-    /**
-     * Set the Product's machine name.
+     /**
+     * Return the sluggable configuration array for this model.
      *
-     * @param  string  $value
-     * @return void
+     * @return array
      */
-    public function setProductMachineNameAttribute($value)
+    public function sluggable()
     {
-        $this->attributes['product_machine_name'] = Str::slug($value, '_');
+        return [
+            'product_machine_name' => [
+                'source' => 'product_name',
+                'separator'=> '_'
+            ],
+            'product_normalized_name' => [
+                'source' => 'product_name',
+                'separator'=> ' '
+            ]
+        ];
     }
 
-    /**
-     * Set the Product's normalized name.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setProductNormalizedNameAttribute($value)
-    {
-        $this->attributes['product_normalized_name'] = Str::slug($value, ' ');
-    }
-    
     public function category() : BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
