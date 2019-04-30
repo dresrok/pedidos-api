@@ -12,10 +12,20 @@ type Category {
     products: [Product] @hasMany
 }
 
+extend type Query {
+    categories: [Category] @paginate(type: "paginator")
+}
+
 extend type Mutation {
     createCategory(
         category_name: String!
+        category_image_path: String!
         category_order: Int!
         office_id: ID!
     ): Category @create
+    updateCategory(
+        id: ID! @rules(apply: ["required"])
+        category_name: String! @rules(apply: ["required"])
+        category_image_path: String! @rules(apply: ["required"])
+    ): Category @update
 }
