@@ -13,10 +13,21 @@ type Company {
 }
 
 extend type Query {
-    company(company_id: ID @eq): Company @find(model: "App\\Models\\Company")
-    companies: [Company!]! @all
+    companyById(company_id: ID @eq): Company @find
+    companies: [Company!]! @paginate(type: "paginator")
 }
 
 extend type Mutation {
     createCompany(company_legal_name: String, city: String): Company @create
+    updateCompany(
+        id: ID! @rules(apply: ["required"])
+        company_legal_name: String
+        company_identification: String
+        company_commercial_name: String
+        company_image: String
+        city: String
+        offices: [Office!]
+        social_networks: [SocialNetwork!]
+    ): Company @update
+    deleteCompany(company_id: ID!): Company @delete
 }

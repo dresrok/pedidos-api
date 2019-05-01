@@ -14,7 +14,7 @@ type Category {
 
 extend type Query {
     categories: [Category] @paginate(type: "paginator")
-    categoryByID(category_id: ID! @eq): Category @find
+    categoryById(category_id: ID! @eq): Category @find
     categoryByName(category_name: String! @where(operator: "like")): Category
         @find
 }
@@ -28,8 +28,8 @@ extend type Mutation {
     ): Category @create
     updateCategory(
         id: ID! @rules(apply: ["required"])
-        category_name: String! @rules(apply: ["required"])
-        category_image_path: String! @rules(apply: ["required"])
+        category_name: String!
+        category_image_path: String!
     ): Category @update
     deleteCategory(category_id: ID!): Category @delete
 }
