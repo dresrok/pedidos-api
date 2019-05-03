@@ -14,6 +14,8 @@ type Company {
 
 extend type Query {
     companyById(company_id: ID @eq): Company @find
+    companyByUserId(user_id: ID!): Company!
+        @field(resolver: "App\\GraphQL\\Queries\\Company@getByUserId")
     companies: [Company!]! @paginate(type: "paginator")
 }
 
@@ -26,8 +28,6 @@ extend type Mutation {
         company_commercial_name: String
         company_image: String
         city: String
-        offices: [Office!]
-        social_networks: [SocialNetwork!]
     ): Company @update
     deleteCompany(company_id: ID!): Company @delete
 }
