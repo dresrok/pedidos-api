@@ -48,11 +48,13 @@ class Category extends Model
         return [
             'category_machine_name' => [
                 'source' => 'category_name',
-                'separator' => '_'
+                'separator' => '_',
+                'onUpdate' => true
             ],
             'category_normalized_name' => [
                 'source' => 'category_name',
-                'separator' => ' '
+                'separator' => ' ',
+                'onUpdate' => true
             ]
         ];
     }

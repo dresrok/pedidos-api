@@ -14,7 +14,7 @@ type Category {
 }
 
 extend type Query {
-    categories: [Category] @paginate(type: "paginator")
+    categories(office_id: ID! @eq): [Category] @paginate(type: "paginator")
     categoryById(category_id: ID! @eq): Category @find
     categoryByName(category_name: String! @where(operator: "like")): Category
         @find
@@ -30,7 +30,8 @@ extend type Mutation {
     updateCategory(
         id: ID! @rules(apply: ["required"])
         category_name: String!
-        category_image: String
-    ): Category @update
+        category_image: Upload
+    ): Category
+        @field(resolver: "App\\GraphQL\\Mutations\\CategoryResolver@update")
     deleteCategory(category_id: ID!): Category @delete
 }
