@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Storage;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany };
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Category extends Model
 {
@@ -16,6 +17,8 @@ class Category extends Model
     const UPDATED_AT = 'category_updated_at';
     const DELETED_AT = 'category_deleted_at';
 
+    const IMAGES_PATH = '/images/categories/';
+
     protected $table = 'd_categories';
     protected $primaryKey = 'category_id';
 
@@ -23,8 +26,7 @@ class Category extends Model
         'category_machine_name',
         'category_normalized_name',
         'category_name',
-        'category_image_path',
-        'category_thumbnail_path',
+        'category_image_name',
         'category_order',
         'subcategory_id',
         'office_id'
@@ -53,6 +55,30 @@ class Category extends Model
                 'separator' => ' '
             ]
         ];
+    }
+
+    public function getCategoryImageMiniAttribute()
+    {
+        if (
+            !empty($this->category_image_name) &&
+            Storage::disk('public')->exists(self::IMAGES_PATH . "mini/{$this->category_image_name}")
+        ) {
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "mini/{$this->category_image_name}");
+            return 'data:image/jpeg;base64,' . base64_encode($contents);
+        }
+        return 'https://via.placeholder.com/36x36.png?text=C';
+    }
+
+    public function getCategoryImageMediumAttribute()
+    {
+        if (
+            !empty($this->category_image_name) &&
+            Storage::disk('public')->exists(self::IMAGES_PATH . "medium/{$this->category_image_name}")
+        ) {
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "medium/{$this->category_image_name}");
+            return 'data:image/jpeg;base64,' . base64_encode($contents);
+        }
+        return 'https://via.placeholder.com/300x200.png';
     }
 
     public function parent(): BelongsTo

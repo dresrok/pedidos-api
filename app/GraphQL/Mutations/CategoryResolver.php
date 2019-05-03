@@ -39,8 +39,7 @@ class CategoryResolver
         }
         return Category::Create([
             'category_name' => $args['category_name'],
-            'category_image_path' => $name,
-            'category_thumbnail_path' => $name,
+            'category_image_name' => $name,
             'category_order' => Category::getNextOrder($args['office_id']),
             'office_id' => $args['office_id'],
         ]);
@@ -60,6 +59,6 @@ class CategoryResolver
 
     private function saveImage($size, $name, $file)
     {
-        return Storage::put("public/images/categories/{$size}/{$name}", $file->encode());
+        return Storage::disk('public')->put(Category::IMAGES_PATH . "{$size}/{$name}", $file->encode());
     }
 }
