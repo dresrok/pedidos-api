@@ -22,10 +22,10 @@ extend type Query {
 extend type Mutation {
     createCategory(
         category_name: String!
-        category_image_path: String!
-        category_order: Int!
+        category_image: Upload
         office_id: ID!
-    ): Category @create
+    ): Category
+        @field(resolver: "App\\GraphQL\\Mutations\\CategoryResolver@create")
     updateCategory(
         id: ID! @rules(apply: ["required"])
         category_name: String!
