@@ -14,10 +14,13 @@ type Category {
 }
 
 extend type Query {
-    categories(
+    paginateCategories(
         office_id: ID! @eq
         category_name: String @where(operator: "like")
     ): [Category] @middleware(checks: ["auth:api"]) @paginate(type: "paginator")
+    retrieveCategories(office_id: ID! @eq): [Category]
+        @middleware(checks: ["auth:api"])
+        @all
 }
 
 extend type Mutation {
