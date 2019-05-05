@@ -4,17 +4,42 @@ type Product {
     product_normalized_name: String
     product_name: String!
     product_description: String
-    product_image_path: String
-    product_thumbnail_path: String
+    product_image_name: String
+    product_image_mini: String
+    product_image_medium: String
     category: Category @belongsTo
-    prices: ProductPrice! @hasMany
+    office: Office! @belongsTo
+    prices: [ProductPrice!]! @hasMany(relation: "prices")
     order_details: [OrderDetail] @hasMany(relation: "orderDetails")
+}
+
+extend type Query {
+    paginateProducts(
+        office_id: ID! @eq
+        category_id: ID @eq
+        product_name: String @where(operator: "like")
+    ): [Product] @paginate(type: "paginator")
 }
 
 extend type Mutation {
     createProduct(
         product_name: String!
         product_description: String
+        product_price: Float!
+        product_image: Upload
         category_id: ID!
-    ): Product @create
+        office_id: ID!
+    ): Product
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\ProductResolver@create")
+    updateProduct(
+        id: ID! @rules(apply: ["required"])
+        product_name: String!
+        product_description: String
+        product_image: Upload
+        category_id: ID!
+    ): Product
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\ProductResolver@update")
+    deleteProduct(id: ID!): Product @middleware(checks: ["auth:api"]) @delete
 }
