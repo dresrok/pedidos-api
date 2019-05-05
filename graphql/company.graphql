@@ -13,10 +13,9 @@ type Company {
 }
 
 extend type Query {
-    companyById(company_id: ID @eq): Company @find
     companyByUserId(user_id: ID!): Company!
+        @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Queries\\Company@getByUserId")
-    companies: [Company!]! @paginate(type: "paginator")
 }
 
 extend type Mutation {

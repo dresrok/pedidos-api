@@ -42,7 +42,7 @@ class CategoryResolver
             'category_name' => $args['category_name'],
             'category_image_name' => $name,
             'category_order' => Category::getNextOrder($args['office_id']),
-            'office_id' => $args['office_id'],
+            'office_id' => $args['office_id']
         ]);
     }
 

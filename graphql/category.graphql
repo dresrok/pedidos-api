@@ -38,7 +38,5 @@ extend type Mutation {
     ): Category
         @middleware(checks: ["auth:api"])
         @field(resolver: "App\\GraphQL\\Mutations\\CategoryResolver@update")
-    deleteCategory(category_id: ID!): Category
-        @middleware(checks: ["auth:api"])
-        @delete
+    deleteCategory(id: ID!): Category @middleware(checks: ["auth:api"]) @delete
 }
