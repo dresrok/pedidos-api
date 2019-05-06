@@ -48,12 +48,12 @@ class Product extends Model
         return [
             'product_machine_name' => [
                 'source' => 'product_name',
-                'separator'=> '_',
+                'separator' => '_',
                 'onUpdate' => true
             ],
             'product_normalized_name' => [
                 'source' => 'product_name',
-                'separator'=> ' ',
+                'separator' => ' ',
                 'onUpdate' => true
             ]
         ];
@@ -83,7 +83,7 @@ class Product extends Model
         return 'https://via.placeholder.com/300x200.png';
     }
 
-    public function category() : BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
@@ -93,12 +93,14 @@ class Product extends Model
         return $this->belongsTo(Office::class, 'office_id');
     }
 
-    public function prices() : HasMany
+    public function prices(): HasMany
     {
-        return $this->hasMany(ProductPrice::class, 'product_id', 'product_id');
+        return $this->hasMany(ProductPrice::class, 'product_id', 'product_id')
+            ->withTrashed()
+            ->orderBy('product_price_id', 'desc');
     }
 
-    public function orderDetails() : HasMany
+    public function orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetail::class, 'product_id', 'product_id');
     }

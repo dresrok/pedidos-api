@@ -22,16 +22,20 @@ class ProductPrice extends Model
         'product_price_amount',
         'product_id'
     ];
-    
+
     protected $dates = [
         'product_price_created_at',
         'product_price_updated_at',
         'product_price_deleted_at'
     ];
 
-    public function product() : BelongsTo
+    public function getProductPriceStatusAttribute(): string
+    {
+        return empty($this->product_price_deleted_at) ? 'Activo' : 'Inactivo';
+    }
+
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-
 }

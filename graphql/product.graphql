@@ -18,7 +18,7 @@ extend type Query {
         office_id: ID! @eq
         category_id: ID @eq
         product_name: String @where(operator: "like")
-    ): [Product] @paginate(type: "paginator")
+    ): [Product] @middleware(checks: ["auth:api"]) @paginate(type: "paginator")
 }
 
 extend type Mutation {
