@@ -14,3 +14,12 @@ type Person {
     orders: Order @hasMany
     invoices: Invoice @hasMany
 }
+
+extend type Mutation {
+    updatePerson(
+        id: ID!
+        person_first_name: String!
+        person_last_name: String!
+        person_identification: String!
+    ): Person @middleware(checks: ["auth:api"]) @update
+}
