@@ -17,7 +17,7 @@ class Product extends Model
     const UPDATED_AT = 'product_updated_at';
     const DELETED_AT = 'product_deleted_at';
 
-    const IMAGES_PATH = '/images/products/';
+    const IMAGES_PATH = '/images/products';
 
     protected $table = 'd_products';
     protected $primaryKey = 'product_id';
@@ -63,9 +63,9 @@ class Product extends Model
     {
         if (
             !empty($this->product_image_name) &&
-            Storage::disk('public')->exists(self::IMAGES_PATH . "mini/{$this->product_image_name}")
+            Storage::disk('public')->exists(self::IMAGES_PATH . "/mini/{$this->product_image_name}")
         ) {
-            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "mini/{$this->product_image_name}");
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "/mini/{$this->product_image_name}");
             return 'data:image/jpeg;base64,' . base64_encode($contents);
         }
         return 'https://via.placeholder.com/36x36.png?text=P';
@@ -75,9 +75,9 @@ class Product extends Model
     {
         if (
             !empty($this->product_image_name) &&
-            Storage::disk('public')->exists(self::IMAGES_PATH . "medium/{$this->product_image_name}")
+            Storage::disk('public')->exists(self::IMAGES_PATH . "/medium/{$this->product_image_name}")
         ) {
-            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "medium/{$this->product_image_name}");
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "/medium/{$this->product_image_name}");
             return 'data:image/jpeg;base64,' . base64_encode($contents);
         }
         return 'https://via.placeholder.com/300x200.png';

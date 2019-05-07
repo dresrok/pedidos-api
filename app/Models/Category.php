@@ -17,7 +17,7 @@ class Category extends Model
     const UPDATED_AT = 'category_updated_at';
     const DELETED_AT = 'category_deleted_at';
 
-    const IMAGES_PATH = '/images/categories/';
+    const IMAGES_PATH = '/images/categories';
 
     protected $table = 'd_categories';
     protected $primaryKey = 'category_id';
@@ -63,9 +63,9 @@ class Category extends Model
     {
         if (
             !empty($this->category_image_name) &&
-            Storage::disk('public')->exists(self::IMAGES_PATH . "mini/{$this->category_image_name}")
+            Storage::disk('public')->exists(self::IMAGES_PATH . "/mini/{$this->category_image_name}")
         ) {
-            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "mini/{$this->category_image_name}");
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "/mini/{$this->category_image_name}");
             return 'data:image/jpeg;base64,' . base64_encode($contents);
         }
         return 'https://via.placeholder.com/36x36.png?text=C';
@@ -75,9 +75,9 @@ class Category extends Model
     {
         if (
             !empty($this->category_image_name) &&
-            Storage::disk('public')->exists(self::IMAGES_PATH . "medium/{$this->category_image_name}")
+            Storage::disk('public')->exists(self::IMAGES_PATH . "/medium/{$this->category_image_name}")
         ) {
-            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "medium/{$this->category_image_name}");
+            $contents = Storage::disk('public')->get(self::IMAGES_PATH . "/medium/{$this->category_image_name}");
             return 'data:image/jpeg;base64,' . base64_encode($contents);
         }
         return 'https://via.placeholder.com/300x200.png';
