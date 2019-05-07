@@ -174,6 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ImageManagerServiceProvider::class,
 
     ],
 
@@ -228,6 +229,7 @@ return [
 
         //Personal Alises
         'GraphQL' => Nuwave\Lighthouse\Support\Facades\GraphQLFacade::class,
+        'ImageManager' => App\Facades\ImageManager::class,
     ],
 
 ];
