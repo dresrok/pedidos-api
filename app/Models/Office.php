@@ -53,7 +53,7 @@ class Office extends Model
 
     public function users() : BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'c_office_user', 'office_id', 'user_id');
     }
 
     public function categories() : HasMany

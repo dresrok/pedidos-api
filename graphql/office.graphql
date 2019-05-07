@@ -9,4 +9,5 @@ type Office {
     city: String!
     company: Company! @belongsTo
     business_types: [BusinessType!]! @belongsToMany(relation: "businessTypes")
+    users: [User!]! @belongsToMany
 }

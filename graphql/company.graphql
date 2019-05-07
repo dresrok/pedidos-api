@@ -4,7 +4,9 @@ type Company {
     company_commercial_name: String
     company_identification: String
     company_slug: String
-    company_image: String
+    company_image_name: String
+    company_image_mini: String
+    company_image_medium: String
     city: String!
     company_is_certified: Boolean
     offices: [Office!]! @hasMany
@@ -18,15 +20,25 @@ extend type Query {
         @field(resolver: "App\\GraphQL\\Queries\\Company@getByUserId")
 }
 
+input UpdateCompanyInput {
+    id: ID! @rules(apply: ["required"])
+    company_legal_name: String!
+    company_commercial_name: String
+    company_identification: String
+    company_image: Upload
+    city: String!
+    office_id: ID!
+    office_email: String
+    office_open_from: String
+    office_open_to: String
+    office_delivery_time: String
+    office_minimum_order_price: Float
+    business_types: [Int!]!
+}
+
 extend type Mutation {
     createCompany(company_legal_name: String, city: String): Company @create
-    updateCompany(
-        id: ID! @rules(apply: ["required"])
-        company_legal_name: String
-        company_identification: String
-        company_commercial_name: String
-        company_image: String
-        city: String
-    ): Company @update
-    deleteCompany(company_id: ID!): Company @delete
+    updateCompany(input: UpdateCompanyInput! @spread): Company
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\CompanyResolver@update")
 }

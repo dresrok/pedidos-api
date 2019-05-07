@@ -20,7 +20,7 @@ class CreateOfficesTable extends Migration
             $table->string('office_email', 64)->nullable();
             $table->string('office_open_from', 8)->nullable();
             $table->string('office_open_to', 8)->nullable();
-            $table->string('office_delivery_time', 8)->nullable();
+            $table->string('office_delivery_time', 16)->nullable();
             $table->double('office_minimum_order_price', 8, 2)->nullable();
             $table->string('city', 32);
 

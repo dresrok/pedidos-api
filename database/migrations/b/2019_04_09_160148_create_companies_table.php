@@ -20,8 +20,8 @@ class CreateCompaniesTable extends Migration
             $table->string('company_commercial_name', 128)->nullable();
             $table->string('company_identification', 64)->nullable();
             $table->string('company_slug', 128);
-            $table->string('company_image', 128)->nullable();
-            $table->string('city', 32);
+            $table->string('company_image_name', 256)->nullable();
+            $table->string('city', 128);
             $table->boolean('company_is_certified')->default(0);
 
             $table->timestamp('company_created_at')->nullable();

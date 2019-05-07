@@ -6,13 +6,6 @@ type BusinessType {
     companies: [Company!]! @belongsToMany
 }
 
-extend type Query{
-    business_types: [BusinessType!]! @all
-}
-
-extend type Mutation {
-    createBusinessType(
-        business_type_name: String!
-        companies: [ID!]!
-    ): BusinessType @create
+extend type Query {
+    businessTypes: [BusinessType!]! @middleware(checks: ["auth:api"]) @all
 }
