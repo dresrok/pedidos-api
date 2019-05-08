@@ -177,5 +177,8 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'company_identification' => 'identificación',
+        'office_email'          => 'email',
+        'person_identification' => 'identificación',
     ],
 ];
