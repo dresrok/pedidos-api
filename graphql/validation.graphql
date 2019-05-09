@@ -7,18 +7,14 @@ extend type Query @group(namespace: "App\\GraphQL\\Queries") {
     validateCompanyIdentification(
         company_id: ID
         company_identification: String!
-    ): Validation
-        @middleware(checks: ["auth:api"])
-        @field(resolver: "Validation@validateCompanyIdentification")
+    ): Validation @field(resolver: "Validation@validateCompanyIdentification")
     validateOfficeEmail(office_id: ID, office_email: String!): Validation
         @middleware(checks: ["auth:api"])
         @field(resolver: "Validation@validateOfficeEmail")
     validatePersonIdentification(
         person_id: ID
         person_identification: String!
-    ): Validation
-        @middleware(checks: ["auth:api"])
-        @field(resolver: "Validation@validatePersonIdentification")
+    ): Validation @field(resolver: "Validation@validatePersonIdentification")
     validateUserEmail(user_id: ID, email: String!): Validation
         @field(resolver: "Validation@validateUserEmail")
 }

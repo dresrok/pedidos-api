@@ -7,5 +7,5 @@ type BusinessType {
 }
 
 extend type Query {
-    businessTypes: [BusinessType!]! @middleware(checks: ["auth:api"]) @all
+    businessTypes: [BusinessType!]! @all
 }

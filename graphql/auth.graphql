@@ -27,11 +27,12 @@ input RefreshTokenInput {
     client_name: String!
 }
 
-type Mutation {
+type Mutation @group(namespace: "App\\GraphQL\\Mutations") {
     login(input: LoginInput): AuthPayload!
-        @field(resolver: "App\\GraphQL\\Mutations\\Authentication@login")
+        @field(resolver: "Authentication@login")
     refreshToken(input: RefreshTokenInput): AuthPayload!
-        @field(resolver: "App\\GraphQL\\Mutations\\Authentication@refreshToken")
+        @field(resolver: "Authentication@refreshToken")
     logout: LogoutResponse!
-        @field(resolver: "App\\GraphQL\\Mutations\\Authentication@logout")
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "Authentication@logout")
 }
