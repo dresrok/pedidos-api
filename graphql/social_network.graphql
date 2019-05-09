@@ -5,3 +5,7 @@ type SocialNetwork {
     social_network_icon: String!
     companies: [Company!]! @belongsToMany
 }
+
+extend type Query {
+    social_networks: [SocialNetwork!]! @all
+}

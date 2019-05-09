@@ -19,8 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category_machine_name', 64);
             $table->string('category_normalized_name', 64);
             $table->string('category_name', 64);
-            $table->string('category_image_path', 128)->nullable();
-            $table->string('category_thumbnail_path', 128)->nullable();
+            $table->string('category_image_name', 256)->nullable();
             $table->integer('category_order');
 
             $table->bigInteger('subcategory_id')->nullable()->unsigned();

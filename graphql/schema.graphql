@@ -5,13 +5,19 @@ scalar DateTime
 "A date string with format `Y-m-d`, e.g. `2011-05-23`."
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
+"Can be used as an argument to upload files using https://github.com/jaydenseric/graphql-multipart-request-spec"
+scalar Upload
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+
 type Query {
-    me: User @auth
-    company(company_id: ID @eq): Company @find(model: "App\\Models\\Company")
-    companies: [Company!]! @all
-    social_networks: [SocialNetwork!]! @all
-    business_types: [BusinessType!]! @all
+    me: User @auth(guard: "api")
 }
+
+# Auth
+#import auth.graphql
+# Validation
+#import validation.graphql
+
 # Module B
 #import company.graphql
 #import office.graphql
@@ -34,6 +40,7 @@ type Query {
 #import location_type.graphql
 #import address_type.graphql
 #import address.graphql
+#import estate.graphql
 #import order.graphql
 #import order_detail.graphql
 #import payment_method.graphql

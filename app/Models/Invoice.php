@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany};
 
 class Invoice extends Model
 {
@@ -54,6 +54,11 @@ class Invoice extends Model
     public function office() : BelongsTo
     {
         return $this->belongsTo(Office::class, 'office_id');
+    }
+
+    public function estates() : BelongsToMany
+    {
+        return $this->belongsToMany(Estate::class, 'd_estate_invoice', 'invoice_id', 'estate_id');
     }
 
     public function invoiceDetails() : HasMany

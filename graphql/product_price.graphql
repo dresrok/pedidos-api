@@ -1,5 +1,21 @@
 type ProductPrice {
     product_price_id: ID!
-    product_price_amount: String!
+    product_price_amount: Float!
+    product_price_status: String!
+    product_id: ID!
     product: Product! @belongsTo
+}
+
+extend type Mutation {
+    createProductPrice(
+        product_price_amount: Float!
+        product_id: ID!
+    ): ProductPrice @middleware(checks: ["auth:api"]) @create
+    updateProductPrice(
+        id: ID! @rules(apply: ["required"])
+        product_price_amount: Float!
+    ): ProductPrice @middleware(checks: ["auth:api"]) @update
+    deleteProductPrice(id: ID!): ProductPrice
+        @middleware(checks: ["auth:api"])
+        @delete
 }

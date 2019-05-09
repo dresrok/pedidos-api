@@ -1,11 +1,57 @@
 type Company {
     company_id: ID!
-    company_legal_name: String
+    company_legal_name: String!
     company_commercial_name: String
-    company_slug: String!
-    company_image: String
+    company_identification: String
+    company_slug: String
+    company_image_name: String
+    company_image_mini: String
+    company_image_medium: String
     city: String!
-    company_is_certified: Boolean!
+    company_is_certified: Boolean
     offices: [Office!]! @hasMany
-    social_networks: [SocialNetwork!]! @belongsToMany(relation: "socialNetworks")
+    social_networks: [SocialNetwork!]!
+        @belongsToMany(relation: "socialNetworks")
+}
+
+extend type Query {
+    companyByUserId(user_id: ID!): Company!
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Queries\\Company@getByUserId")
+}
+
+input UpdateCompanyInput {
+    id: ID! @rules(apply: ["required"])
+    company_legal_name: String!
+    company_commercial_name: String
+    company_identification: String
+    company_image: Upload
+    city: String!
+    office_id: ID!
+    office_email: String
+    office_open_from: String
+    office_open_to: String
+    office_delivery_time: String
+    office_minimum_order_price: Float
+    business_types: [Int!]!
+}
+
+input RegisterCompanyInput {
+    company_legal_name: String!
+    company_identification: String!
+    city: String!
+    business_types: [Int!]!
+    person_first_name: String!
+    person_last_name: String!
+    person_identification: String!
+    user_email: String!
+    user_password: String!
+}
+
+extend type Mutation @group(namespace: "App\\GraphQL\\Mutations") {
+    registerCompany(input: RegisterCompanyInput! @spread): AuthPayload!
+        @field(resolver: "CompanyResolver@register")
+    updateCompany(input: UpdateCompanyInput! @spread): Company
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "CompanyResolver@update")
 }

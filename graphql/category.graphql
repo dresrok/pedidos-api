@@ -1,13 +1,42 @@
 type Category {
     category_id: ID!
-    category_machine_name: String!
-    category_normalized_name: String!
+    category_machine_name: String
+    category_normalized_name: String
     category_name: String!
-    category_image_path: String
-    category_thumbnail_path: String
+    category_image_name: String
+    category_image_mini: String
+    category_image_medium: String
     category_order: Int!
     parent: Category @belongsTo
     office: Office! @belongsTo
     subcategories: [Category] @hasMany
     products: [Product] @hasMany
+}
+
+extend type Query {
+    paginateCategories(
+        office_id: ID! @eq
+        category_name: String @where(operator: "like")
+    ): [Category] @middleware(checks: ["auth:api"]) @paginate(type: "paginator")
+    retrieveCategories(office_id: ID! @eq): [Category]
+        @middleware(checks: ["auth:api"])
+        @all
+}
+
+extend type Mutation {
+    createCategory(
+        category_name: String!
+        category_image: Upload
+        office_id: ID!
+    ): Category
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\CategoryResolver@create")
+    updateCategory(
+        id: ID! @rules(apply: ["required"])
+        category_name: String!
+        category_image: Upload
+    ): Category
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\CategoryResolver@update")
+    deleteCategory(id: ID!): Category @middleware(checks: ["auth:api"]) @delete
 }

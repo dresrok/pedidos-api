@@ -1,0 +1,38 @@
+type Passport {
+    access_token: String!
+    refresh_token: String!
+    expires_in: Int!
+    token_type: String!
+}
+
+type AuthPayload {
+    token: Passport!
+    me: User!
+    company: Company!
+}
+
+type LogoutResponse {
+    status: String!
+    message: String
+}
+
+input LoginInput {
+    username: String!
+    password: String!
+    client_name: String!
+}
+
+input RefreshTokenInput {
+    refresh_token: String
+    client_name: String!
+}
+
+type Mutation @group(namespace: "App\\GraphQL\\Mutations") {
+    login(input: LoginInput): AuthPayload!
+        @field(resolver: "Authentication@login")
+    refreshToken(input: RefreshTokenInput): AuthPayload!
+        @field(resolver: "Authentication@refreshToken")
+    logout: LogoutResponse!
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "Authentication@logout")
+}

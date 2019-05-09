@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Nuwave\Lighthouse\Exceptions\AuthenticationException;
 
 class Authenticate extends Middleware
 {
@@ -14,8 +15,10 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
             return route('login');
+        } else {
+            throw new AuthenticationException('Unauthenticated.');
         }
     }
 }

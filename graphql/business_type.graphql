@@ -5,3 +5,7 @@ type BusinessType {
     business_type_name: String!
     companies: [Company!]! @belongsToMany
 }
+
+extend type Query {
+    businessTypes: [BusinessType!]! @all
+}

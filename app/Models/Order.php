@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, HasOne};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
 class Order extends Model
 {
@@ -47,6 +47,11 @@ class Order extends Model
     public function office() : BelongsTo
     {
         return $this->belongsTo(Office::class, 'office_id');
+    }
+
+    public function estates() : BelongsToMany
+    {
+        return $this->belongsToMany(Estate::class, 'd_estate_order', 'order_id', 'estate_id');
     }
 
     public function orderDetails() : HasMany

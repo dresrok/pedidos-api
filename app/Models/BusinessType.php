@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsToMany};
 
 class BusinessType extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     const CREATED_AT = 'business_type_created_at';
     const UPDATED_AT = 'business_type_updated_at';
@@ -30,9 +31,29 @@ class BusinessType extends Model
         'business_type_deleted_at'
     ];
 
-    public function companies() : BelongsToMany
+     /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
     {
-        return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'company_id');
+        return [
+            'business_type_machine_name' => [
+                'source' => 'business_type_name',
+                'separator'=> '_'
+            ],
+            'business_type_normalized_name' => [
+                'source' => 'business_type_name',
+                'separator'=> ' '
+            ]
+        ];
+    }
+
+
+    public function offices() : BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, 'b_business_type_office', 'business_type_id', 'office_id');
     }
 
 }
