@@ -36,9 +36,22 @@ input UpdateCompanyInput {
     business_types: [Int!]!
 }
 
-extend type Mutation {
-    createCompany(company_legal_name: String, city: String): Company @create
+input RegisterCompanyInput {
+    company_legal_name: String!
+    company_identification: String!
+    city: String!
+    business_types: [Int!]!
+    person_first_name: String!
+    person_last_name: String!
+    person_identification: String!
+    user_email: String!
+    user_password: String!
+}
+
+extend type Mutation @group(namespace: "App\\GraphQL\\Mutations") {
+    registerCompany(input: RegisterCompanyInput! @spread): AuthPayload!
+        @field(resolver: "CompanyResolver@register")
     updateCompany(input: UpdateCompanyInput! @spread): Company
         @middleware(checks: ["auth:api"])
-        @field(resolver: "App\\GraphQL\\Mutations\\CompanyResolver@update")
+        @field(resolver: "CompanyResolver@update")
 }

@@ -2,15 +2,84 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Models\Company;
+use Exception;
+use App\Models\User;
 use App\Models\Office;
-use App\Facades\ImageManager;
+use App\Models\Person;
+use App\Models\Company;
 
+use App\Facades\ImageManager;
+use Illuminate\Support\Facades\DB;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class CompanyResolver
+class CompanyResolver extends BaseAuthResolver
 {
+    /**
+     * Return a value for the field.
+     *
+     * @param  null  $rootValue Usually contains the result returned from the parent field. In this case, it is always `null`.
+     * @param  mixed[]  $args The arguments that were passed into the field.
+     * @param  \Nuwave\Lighthouse\Support\Contracts\GraphQLContext  $context Arbitrary data that is shared between all fields of a single query.
+     * @param  \GraphQL\Type\Definition\ResolveInfo  $resolveInfo Information about the query itself, such as the execution state, the field name, path to the field from the root, and more.
+     * @return mixed
+     */
+    public function register($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        DB::beginTransaction();
+        try {
+            $company = Company::create([
+                'company_legal_name' => $args['company_legal_name'],
+                'company_identification' => $args['company_identification'],
+                'city' => $args['city']
+            ]);
+
+            $office = Office::create([
+                'office_name' => $args['company_legal_name'],
+                'city' => $args['city'],
+                'company_id' => $company->company_id
+            ]);
+
+            $office->businessTypes()->attach($args['business_types']);
+
+            $person = Person::create([
+                'person_first_name' => $args['person_first_name'],
+                'person_last_name' => $args['person_last_name'],
+                'person_identification' => $args['person_identification'],
+                'person_type_id' => 1,
+                'person_identification_type_id' => 1
+            ]);
+
+            $user = User::create([
+                'email' => $args['user_email'],
+                'password' => bcrypt($args['user_password']),
+                'person_id' => $person->person_id,
+                'profile_id' => 2,
+            ]);
+
+            $user->offices()->attach([$office->office_id]);
+
+            $args = [
+                'input' => [
+                    'username' => $user->email,
+                    'password' => $args['user_password'],
+                    'client_name' => 'web'
+                ]
+            ];
+            $credentials = $this->buildCredentials($args, 'password');
+            $token = $this->makeRequest($credentials);
+            $me = $user;
+            DB::commit();
+            return compact('token', 'me', 'company');
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw new Exception('Falló el registro');
+        }
+    }
+
+    private function createToken($company, $user)
+    { }
+
     /**
      * Return a value for the field.
      *
