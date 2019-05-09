@@ -5,3 +5,12 @@ type User {
     profile: Profile!
     offices: [Office!]! @belongsToMany
 }
+
+extend type Mutation {
+    changePassword(
+        current_password: String! @rules(apply: ["required"])
+        new_password: String! @rules(apply: ["required"])
+    ): User
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\Mutations\\UserResolver@changePassword")
+}
