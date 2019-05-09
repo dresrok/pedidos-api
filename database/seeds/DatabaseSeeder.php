@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EstatesTableSeeder::class);
         $this->call(PaymentMethodsTableSeeder::class);
 
-        $this->command->info('Sample data');
-        $this->call(SampleDataSeeder::class);
+        // $this->command->info('Sample data');
+        // $this->call(SampleDataSeeder::class);
     }
 }
